@@ -3,800 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPMB | SMK Ma'arif Pameungpeuk</title>
-    <link rel="icon" href="favicon.png" type="image/png">
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <!-- AOS (Animate On Scroll) -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <title>Halaman Dialihkan - SMK MAPAG</title>
+    <meta http-equiv="refresh" content="5;url=https://smkmapag.vercel.app/ayosekolah">
     
     <style>
-        :root {
-            --primary: #0d6efd;
-            --secondary: #ffc107;
-            --accent: #dc3545;
-            --dark: #0f172a;
-            --glass: rgba(255, 255, 255, 0.8);
-            --glass-border: rgba(255, 255, 255, 0.5);
-        }
-
-        html, body {
-            max-width: 100%;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Perbaikan area kosong akibat animasi AOS */
-        [data-aos] {
-            pointer-events: none;
-        }
-        .aos-animate {
-            pointer-events: auto;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: #f8fafc;
-            color: var(--dark);
-            overflow-x: hidden;
-        }
-
-        /* Animated Background SVG Circles */
-        .bg-animations {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-            background-color: #f0f4f8;
-        }
-
-        .circle {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.5;
-            animation: float 20s infinite alternate ease-in-out;
-        }
-
-        .circle-1 {
-            width: 400px;
-            height: 400px;
-            background: #cfe2ff; /* Pastel Blue */
-            top: -100px;
-            left: -100px;
-            animation-duration: 25s;
-        }
-
-        .circle-2 {
-            width: 350px;
-            height: 350px;
-            background: #fff3cd; /* Pastel Yellow */
-            bottom: 10%;
-            right: -50px;
-            animation-duration: 30s;
-            animation-delay: -5s;
-        }
-
-        .circle-3 {
-            width: 300px;
-            height: 300px;
-            background: #f8d7da; /* Pastel Red */
-            top: 40%;
-            left: 30%;
-            animation-duration: 22s;
-            animation-delay: -10s;
-        }
-
-
-        /* --- Custom Animations --- */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-
-        /* Definisi Gerakan Pulse */
-        @keyframes pulse-soft {
-        0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.4); }
-        50% { transform: scale(1.02); box-shadow: 0 0 15px 5px rgba(220, 53, 69, 0); }
-        100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 53, 69, 0); }
-        }
-
-        @keyframes slow-rotate {
-            from { transform: translateY(-50%) rotate(0deg); }
-            to { transform: translateY(-50%) rotate(360deg); }
-        }
-
-        @keyframes pulse-badge {
-            0%, 100% { ransform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.486); }
-            50% { transform: scale(1.03); box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
-        }
-
-        .animate-float {
-            animation: float 4s ease-in-out infinite;
-        }
-
-        .animate-float-fab {
-            animation: float 3s ease-in-out infinite;
-            animation-delay: 1s;
-        }
-
-        /* Animasi Fade In & Slide Up untuk Dropdown */
-        /* 1. Keadaan dasar: Tersembunyi */
-        .animate-fade-in {
-            opacity: 0;
-            transform: translateY(-10px) scale(0.95);
-            transition: transform 0.2s ease-out;
-            pointer-events: none;
-            display: block !important; /* Biarkan tetap block agar transisi terbaca */
-            visibility: hidden;
-        }
-
-        /* 2. Saat sedang proses muncul atau sudah muncul */
-        .animate-fade-in.show {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-            pointer-events: auto;
-            visibility: visible;
-        }
-
-        /* Tambahan agar item tidak kaku */
-        .dropdown-item {
-            transition: background 0.2s, transform 0.2s;
-        }
-
-        .dropdown-item:hover {
-            transform: translateX(5px);
-        }
-
-        .animate-float { animation: float 4s ease-in-out infinite; }
-        .animate-pulse-custom { animation: pulse-soft 2s ease-in-out infinite; }
-        .animate-pulse-badge1 { animation: pulse-badge 3s infinite; }
-        .animate-pulse-badge2 { animation: pulse-badge 3s infinite 1s; }
-        .animate-pulse-badge3 { animation: pulse-badge 3s infinite 1.8s; }
-
-        /* Responsivitas Navbar & Tombol untuk Mobile */
-        @media (max-width: 576px) {
-            .navbar-brand span {
-                font-size: 1.1rem !important; /* Mengecilkan teks logo agar tidak memakan ruang */
-            }
-            
-            .navbar .btn-primary {
-                padding: 6px 12px !important;
-                font-size: 0.75rem !important;
-                white-space: nowrap; /* Mencegah teks turun ke bawah */
-            }
-
-            /* Mengecilkan gambar dekoratif di belakang agar tidak merusak layout mobile */
-            .hero-bg-image {
-                width: 500px !important; 
-                left: -50px !important;
-                opacity: 0.1;
-            }
-
-            /* Mengatur padding hero agar tidak terlalu mepet */
-            .hero-section {
-                padding: 120px 0 60px;
-            }
-        }
-
-        /* Mengatasi Row yang sering menyebabkan area kosong di kanan */
-        .row {
-            margin-right: 0;
-            margin-left: 0;
-        }
-
-        /* Background Class */
-        .bg-glow {
-            position: fixed;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(13, 110, 253, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
-            z-index: -1;
-            border-radius: 50%;
-        }
-
-        .bg-dark {
-            --bs-bg-opacity: .8;
-            background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
-        }
-
-        .bg-white {
-            --bs-bg-opacity: .7;
-            background-color
-        : rgba(var(--bs-white-rgb), var(--bs-bg-opacity)) !important;
-        }
-
-        /* Glassmorphism Components */
-        /* Navbar & Dropdown Styles */
-        .navbar {
-            background: rgb(255 255 255 / 50%) !important;
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--glass-border);
-            box-shadow: 0 10px 15px rgb(0 0 0 / 8%) !important;
-        }
-
-        .dropdown-menu {
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            padding: 10px;
-            margin-top: 10px;
-        }
-
-        .dropdown-item {
-            border-radius: 8px;
-            padding: 8px 15px;
-            font-weight: 600;
-            color: var(--dark);
-            transition: all 0.2s;
-        }
-
-        .dropdown-item:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        .btn {
-            transition: transform 0.3s ease;
-        }
-       
-        .btn:hover {
-            transition: transform 0.3s ease;
-            transform: translateY(-5px);
-        }
-         
-        .glass-card {
-            background: var(--glass);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 2rem;
-            transition: transform 0.3s ease;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
-        }
-
-        .glass-card:hover {
-            transform: translateY(-5px);
-        }
-
-        /* Hero Section */
-        .hero-section {
-            padding: 160px 0 80px;
-            background: linear-gradient(135deg, #d3edffa3 0%, #ffffffad 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Element Gambar Latar Belakang Baru */
-        .hero-bg-image {
-            position: absolute;
-            top: 40%;
-            left: 5%;
-            transform: translateY(-50%);
-            width: 600px;
-            opacity: 0.15; /* Dibuat transparan agar teks tetap terbaca */
-            z-index: 0;
-            pointer-events: none;
-            /* filter: grayscale(100%) brightness(1.2); */
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-title {
-            font-size: clamp(2.2rem, 5vw, 3.8rem);
-            font-weight: 800;
-            color: #0c4a6e;
-            line-height: 1.1;
-        }
-
-        .badge-spmb {
-            background: var(--primary);
-            color: white;
-            padding: 0.5rem 1.2rem;
-            border-radius: 100px;
-            font-weight: 700;
-            display: inline-block;
-            margin-bottom: 1rem;
-        }
-
-        .promo-badge {
-            background: var(--accent);
-            color: white;
-            font-size: 0.75rem;
-            font-weight: 800;
-            padding: 4px 12px;
-            border-radius: 50px;
-            display: inline-block;
-            margin-bottom: 10px;
-        }
-
-        /* Program Keahlian */
-        .jurusan-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .jurusan-item {
-            border-left: 5px solid var(--primary);
-            padding-left: 1.5rem;
-        }
-
-        /* Gelombang Cards */
-        .gelombang-box {
-            background: rgba(13, 110, 253, 0.05);
-            border-radius: 15px;
-            padding: 15px;
-            margin-bottom: 10px;
-            border: 1px dashed var(--primary);
-        }
-
-        #loadingOverlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255,255,255,0.9);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-
-        .text-gradient {
-            background: linear-gradient(to right, #0d6efd, #6610f2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-    
-        /* Floating Action Button (FAB) Style */
-        .fab-whatsapp {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background-color: #25d366;
-            color: white;
-            border-radius: 50%;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 30px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-            transition: all 0.3s ease;
+            /* Background Gradient Segar */
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            overflow: hidden;
+        }
+
+        /* Glassmorphism Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 24px;
+            padding: 40px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        }
+
+        h1 {
+            color: #2d5a27;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+
+        p {
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .loader {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #62c1ad;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .btn-manual {
+            display: inline-block;
+            padding: 12px 24px;
+            background: rgba(98, 193, 173, 0.8);
+            color: white;
             text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-weight: 600;
         }
 
-        .fab-whatsapp:hover {
-            background-color: #128c7e;
-            color: white;
-            transform: scale(1.1) rotate(5deg);
+        .btn-manual:hover {
+            background: rgba(98, 193, 173, 1);
+            transform: translateY(-2px);
         }
 
-        /* Tooltip text untuk FAB */
-        .fab-whatsapp::before {
-            content: "Tanya Admin";
-            position: absolute;
-            right: 70px;
-            background: rgba(0,0,0,0.7);
-            color: white;
-            padding: 5px 12px;
-            border-radius: 8px;
-            font-size: 14px;
-            white-space: nowrap;
-            opacity: 0;
-            transition: opacity 0.3s;
-            pointer-events: none;
+        .countdown {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 15px;
         }
-
-        .fab-whatsapp:hover::before {
-            opacity: 1;
-        }
-
-        /* Tombol Daftar di Mobile (FAB Tengah Bawah) */
-        .fab-daftar-mobile {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            right: 85px; /* Memberi ruang untuk tombol WA */
-            z-index: 1000;
-            display: none; /* Default sembunyi */
-        }
-
-@media (max-width: 768px) {
-        .fab-whatsapp {
-            bottom: 20px;
-            right: 20px;
-            width: 55px;
-            height: 55px;
-        }
-        .fab-daftar-mobile { display: block; }
-        .hero-bg-image { width: 300px !important; left: -50px !important; }
-        .hero-section { padding: 120px 0 60px; }
-        .navbar-brand span { font-size: 1.2rem; }
-}
-
     </style>
 </head>
-<body id="home">
+<body>
 
-    <div class="bg-glow" style="top: -100px; right: -100px;"></div>
-    <div class="bg-glow" style="bottom: -100px; left: -100px;"></div>
-
-    <!-- Dynamic Animated Background -->
-    <div class="bg-animations">
-        <div class="circle circle-1"></div>
-        <div class="circle circle-2"></div>
-        <div class="circle circle-3"></div>
-    </div>
-
-    <div id="loadingOverlay">
-        <div class="spinner-border text-primary" role="status"></div>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg fixed-top py-2 shadow-sm">
-        <div class="container d-flex justify-content-between align-items-center">
-            <a class="navbar-brand d-flex align-items-center" href="#home">
-                <img src="https://cdn-sdotid.adg.id/images/1a06dd91-4137-41c6-ae54-db905f4658bc_709x709.png" width="35" class="me-2" alt="Logo">
-                <span class="fw-bold text-secondary">SMK MA'ARIF <span class="text-secondary" style="color: rgb(2 175 76) !important;">PAMEUNGPEUK</span></span>
-            </a>
-
-            <div class="d-flex align-items-center gap-2">
-                <a href="https://portalmaarif.blogspot.com/2026/03/formulir-pendaftaran.html" class="btn btn-primary rounded-pill px-4 fw-bold shadow-sm d-none d-md-inline-block animate-pulse-custom">
-                    DAFTAR SEKARANG
-                </a>
-
-                <div class="dropdown">
-                    <button class="btn btn-light rounded-circle shadow-sm border" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="width: 45px; height: 45px;">
-                        <i class="bi bi-list fs-4"></i>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end animate-fade-in">
-                        <li><a class="dropdown-item" href="#home"><i class="bi bi-house-door me-2"></i> Beranda</a></li>
-                        <li><a class="dropdown-item" href="#jurusan"><i class="bi bi-book me-2"></i> Jurusan</a></li>
-                        <li><a class="dropdown-item" href="#fasilitas"><i class="bi bi-building me-2"></i> Fasilitas</a></li>
-                        <li><a class="dropdown-item" href="#syarat"><i class="bi bi-file-earmark-text me-2"></i> Syarat Daftar</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item text-success" href="https://wa.me/6282118162844" target="_blank"><i class="bi bi-whatsapp me-2"></i> Chat Admin</a></li>
-                    </ul>
-                </div>
-                
-            </div>
-        </div>
-    </nav>
-
-    <div class="fab-daftar-mobile">
-            <a href="https://portalmaarif.blogspot.com/2026/03/formulir-pendaftaran.html" class="btn btn-primary w-100 py-3 rounded-pill fw-bold shadow-lg animate-pulse-custom">
-                <i class="bi bi-pencil-square me-2"></i> DAFTAR SEKARANG
-            </a>
-    </div>
-    <!-- Hero -->
-    <section class="hero-section rounded-4">
-        <!-- Gambar Latar Belakang Baru -->
-        <!-- <img src="https://i.ibb.co.com/Vp0654sc/Photoroom-20250214-163951-10.png" class="hero-bg-image" alt="Background Dekoratif"> -->
+    <div class="glass-card">
+        <div class="loader"></div>
+        <h1>Ups! Halaman Tidak Tersedia</h1>
+        <p>Halaman yang Anda tuju sedang dalam pemeliharaan atau telah dipindahkan. Anda akan diarahkan secara otomatis ke halaman <strong>Ayo Sekolah</strong>.</p>
         
-        <div class="container hero-content">
-            <div class="row align-items-center">
-                <div class="col-lg-6 text-lg-start" data-aos="fade-right" data-aos-duration="1000">
-                    <span class="badge-spmb" data-aos="zoom-in" data-aos-delay="400">SPMB 2026/2027</span>
-                    <h1 class="hero-title mb-3">
-                        Masa Depan Cerah di 
-                        <span class="text-gradient" 
-                            data-bs-toggle="tooltip" 
-                            data-bs-placement="bottom" 
-                            title="Ma'arif Pameungpeuk" 
-                            style="cursor: help;">
-                            SMK Mapag
-                        </span>
-                    </h1>
-                    <p class="lead mb-4 text-secondary">Sekolah berbasis teknologi dengan kurikulum industri terkini.</p>
-                    
-                    <div class="row g-2 mb-4">
-                        <div class="col-4" data-aos="zoom-in" data-aos-delay="200">
-                            <div class="glass-card p-2 text-center border-danger animate-pulse-badge1">
-                                <span class="promo-badge">💎 GRATIS</span>
-                                <p class="small fw-bold mb-0">📝 Biaya Daftar</p>
-                            </div>
-                        </div>
-                        <div class="col-4" data-aos="zoom-in" data-aos-delay="400">
-                            <div class="glass-card p-2 text-center border-danger animate-pulse-badge2">
-                                <span class="promo-badge">💎 GRATIS</span>
-                                <p class="small fw-bold mb-0">🏫 DSP/ Bangunan</p>
-                            </div>
-                        </div>
-                        <div class="col-4" data-aos="zoom-in" data-aos-delay="600">
-                            <div class="glass-card p-2 text-center border-danger animate-pulse-badge3">
-                                <span class="promo-badge">💎 GRATIS</span>
-                                <p class="small fw-bold mb-0">🎓 SPP Bulanan</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="glass-card border-primary p-3 mb-4" data-aos="fade-down" data-aos-delay="200">
-                        <div class="gelombang-box mb-2">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="badge bg-primary">Gelombang 1</span>
-                                <span class="small fw-bold">12 Jan - 30 April 2026</span>
-                            </div>
-                            <p class="small text-danger fw-bold mt-1 mb-0"><i class="bi bi-gift-fill"></i> Bonus: Seragam putih abu <span style="font-size: 10px;color: #373737;font-style: italic;">(kuota terbatas)</span></p>
-                        </div>
-                        <div class="gelombang-box mb-0">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="badge bg-secondary">Gelombang 2</span>
-                                <span class="small fw-bold">1 Mei - 31 Juli 2026</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 text-center aos-init aos-animate" data-aos="fade-left" data-aos-duration="1000">
-                    <div class="glass-card p-2 overflow-hidden shadow-lg position-relative animate-float">
-                        <!-- <img src="https://cdn-sdotid.adg.id/images/cc133a94-b5f2-4f8d-a3b5-25332ce28dd1_980x381.png" class="img-fluid rounded-4" alt="Siswa SMK"> -->
-                        <img src="source/hero.jpg" class="img-fluid rounded-4" alt="Siswa SMK">
-                        <div class="position-absolute bottom-0 start-0 m-4">
-                            <div class="badge bg-warning text-dark p-2 rounded-3 shadow">
-                                <i class="bi bi-award-fill"></i> Akreditasi B
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Program Keahlian -->
-    <section class="py-5" id="jurusan">
-        <div class="container py-4">
-            <div class="text-center mb-5 aos-init aos-animate" data-aos="fade-up">
-                <h2 class="fw-800 display-6">Program Keahlian</h2>
-                <p class="text-muted">Masa depanmu dimulai dari pilihan yang tepat hari ini</p>
-            </div>
-            <div class="jurusan-grid">
-                <!-- Bisnis Daring -->
-                <div class="glass-card jurusan-item border-success aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-                    <div class="d-flex justify-content-between">
-                        <h4 class="fw-bold mb-3  text-success"><i class="bi bi-megaphone-fill"></i> Bisnis Daring &amp; Pemasaran</h4>
-                        <span class="badge bg-danger align-self-start">UNGGULAN</span>
-                    </div>
-                    <ul class="small text-secondary ps-0 list-unstyled">
-                        <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i> Pemasaran Konvensional &amp; Digital</li>
-                        <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i> E-commerce &amp; Penjualan Online</li>
-                        <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i> Manajemen Media Sosial</li>
-                        <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i> Kewirausahaan &amp; Riset Pasar</li>
-                    </ul>
-                </div>
-                <!-- TJKT -->
-                <div class="glass-card jurusan-item border-primary aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
-                    <h4 class="fw-bold mb-3 text-primary"><i class="bi bi-router-fill"></i> Teknik Jaringan Komputer &amp; Telekomunikasi</h4>
-                    <ul class="small text-secondary ps-0 list-unstyled">
-                        <li class="mb-2"><i class="bi bi-check-circle text-primary me-2"></i> Perakitan &amp; Perbaikan Komputer</li>
-                        <li class="mb-2"><i class="bi bi-check-circle text-primary me-2"></i> Konfigurasi Jaringan (LAN, WAN)</li>
-                        <li class="mb-2"><i class="bi bi-check-circle text-primary me-2"></i> Keamanan Jaringan &amp; Sistem Operasi</li>
-                        <li class="mb-2"><i class="bi bi-check-circle text-primary me-2"></i> Pemrograman Dasar</li>
-                    </ul>
-                </div>
-                <!-- Perhotelan -->
-                <div class="glass-card jurusan-item border-warning aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
-                    <div class="d-flex justify-content-between">
-                        <h4 class="fw-bold mb-3 text-warning"><i class="bi bi-buildings-fill"></i> Perhotelan</h4>
-                        <span class="badge bg-danger align-self-start">BARU!</span>
-                    </div>
-                    <ul class="small text-secondary ps-0 list-unstyled">
-                        <li class="mb-2"><i class="bi bi-check-circle text-warning me-2"></i> Front Office (Resepsionis)</li>
-                        <li class="mb-2"><i class="bi bi-check-circle text-warning me-2"></i> Housekeeping (Tata Graha)</li>
-                        <li class="mb-2"><i class="bi bi-check-circle text-warning me-2"></i> Food and Beverage Service</li>
-                        <li class="mb-2"><i class="bi bi-check-circle text-warning me-2"></i> Sales &amp; Marketing Perhotelan</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why & Facilities -->
-    <section class="py-5 bg-white rounded-4" id="fasilitas">
-        <div class="containe py-5">
-            <div class="row g-5">
-                <div class="col-lg-6 aos-init aos-animate" data-aos="fade-right">
-                    <h2 class="fw-800 mb-4">Pengembangan Karakter</h2>
-                    <div class="glass-card mb-3 bg-light border-0">
-                        <ul class="list-unstyled mb-0">
-                            <li class="mb-3 d-flex align-items-center"><i class="bi bi-shield-check text-success fs-4 me-3"></i> <div><strong>Bimbingan Karir</strong> - Pelatihan kerja &amp; wirausaha</div></li>
-                            <li class="mb-3 d-flex align-items-center"><i class="bi bi-shield-check text-success fs-4 me-3"></i> <div><strong>Mentoring Agama</strong> - IPNU/IPPNU &amp; Ta'lim Jum'at</div></li>
-                            <li class="bi mb-3 d-flex align-items-center"><i class="bi bi-shield-check text-success fs-4 me-3"></i> <div><strong>Bina Al-Qur'an</strong> - Program baca tulis Al-Qur'an</div></li>
-                            <li class="d-flex align-items-center"><i class="bi bi-shield-check text-success fs-4 me-3"></i> <div><strong>Ekstrakurikuler</strong> - Seni, Pramuka, dan Olahraga</div></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-6 aos-init aos-animate" data-aos="fade-left">
-                    <h2 class="fw-800 mb-4">Fasilitas Lengkap</h2>
-                    <div class="row g-3">
-                        <div class="col-6"><div class="glass-card p-3 text-center small fw-bold aos-init aos-animate" data-aos="zoom-in" data-aos-delay="100"><i class="bi bi-pc-display d-block fs-3 mb-2 text-primary"></i> Lab. Komputer</div></div>
-                        <div class="col-6"><div class="glass-card p-3 text-center small fw-bold aos-init aos-animate" data-aos="zoom-in" data-aos-delay="200"><i class="bi bi-shop d-block fs-3 mb-2 text-primary"></i> Lab. Pemasaran</div></div>
-                        <div class="col-6"><div class="glass-card p-3 text-center small fw-bold aos-init aos-animate" data-aos="zoom-in" data-aos-delay="300"><i class="bi bi-book d-block fs-3 mb-2 text-primary"></i> Perpustakaan</div></div>
-                        <div class="col-6"><div class="glass-card p-3 text-center small fw-bold aos-init aos-animate" data-aos="zoom-in" data-aos-delay="400"><i class="bi bi-moon-stars d-block fs-3 mb-2 text-primary"></i> Mushola</div></div>
-                        <div class="col-12"><div class="glass-card p-3 text-center small fw-bold aos-init aos-animate" data-aos="zoom-in" data-aos-delay="500"><i class="bi bi-geo-alt d-block fs-3 mb-2 text-primary"></i> Lapangan &amp; Ruang Kesenian</div></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Syarat Pendaftaran -->
-    <section class="py-5" id="syarat">
-        <div class="container py-4">
-            <div class="glass-card bg-dark text-white p-5 border-0 shadow-lg aos-init aos-animate" data-aos="flip-up" data-aos-duration="1500">
-                <div class="row align-items-center">
-                    <div class="col-lg-7">
-                        <h2 class="fw-800 mb-4 text-warning">Syarat Pendaftaran</h2>
-                        <ul class="list-unstyled">
-                            <li class="mb-2"><i class="bi bi-dot text-warning fs-3"></i> Formulir Pendaftaran</li>
-                            <li class="mb-2"><i class="bi bi-dot text-warning fs-3"></i> SK Kelulusan SMP / Sederajat</li>
-                            <li class="mb-2"><i class="bi bi-dot text-warning fs-3"></i> Legalisir FC Ijazah SMP / Sederajat</li>
-                            <li class="mb-2"><i class="bi bi-dot text-warning fs-3"></i> Pas Foto 3x4 &amp; FC Kartu Keluarga</li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-5 text-center mt-4 mt-lg-0">
-                        <div class="bg-warning text-dark p-4 rounded-4 mb-3">
-                            <p class="fw-800 mb-1">Link Pendaftaran Online:</p>
-                            <a href="https://s.id/SPMB2026-SMKM" class="text-dark fw-bold text-decoration-none">s.id/SPMB2026-SMKM</a>
-                        </div>
-                        <!-- <button class="btn btn-primary btn-lg w-100 py-3 fw-800 rounded-pill" data-bs-toggle="modal" data-bs-target="#modalDaftar">
-                            DAFTAR SEKARANG JUGA!!
-                        </button> -->
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Modal Form -->
-    <div class="modal fade" id="modalDaftar" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content glass-card border-0 p-3">
-                <div class="modal-header border-0">
-                    <h5 class="fw-800">Form Pendaftaran Online</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="ppdbForm">
-                        <div class="mb-3">
-                            <label class="form-label small fw-bold">NAMA LENGKAP</label>
-                            <input type="text" name="nama" class="form-control rounded-3" required="">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label small fw-bold">ASAL SEKOLAH</label>
-                            <input type="text" name="asal_sekolah" class="form-control rounded-3" required="">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label small fw-bold">NOMOR WHATSAPP</label>
-                            <input type="tel" name="wa" class="form-control rounded-3" placeholder="08..." required="">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label small fw-bold">PILIHAN JURUSAN</label>
-                            <select name="jurusan" class="form-select rounded-3" required="">
-                                <option value="" disabled="" selected="">Pilih Program Keahlian</option>
-                                <option value="BDP">Bisnis Daring &amp; Pemasaran</option>
-                                <option value="TJKT">Teknik Jaringan Komputer &amp; Telekomunikasi</option>
-                                <option value="PH">Perhotelan</option>
-                            </select>
-                        </div>
-                        <button type="submit" id="btnSubmit" class="btn btn-primary w-100 py-3 fw-bold mt-2 rounded-pill shadow">SUBMIT DATA</button>
-                    </form>
-                </div>
-            </div>
+        <a href="https://smkmapag.vercel.app/ayosekolah" class="btn-manual">Klik di sini jika tidak beralih</a>
+        
+        <div class="countdown">
+            Mengarahkan dalam <span id="seconds">5</span> detik...
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="py-5 bg-dark text-white">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <h5 class="fw-bold text-primary mb-3">Kontak &amp; Alamat</h5>
-                    <p class="small opacity-75 mb-1"><i class="bi bi-geo-alt-fill me-2"></i> Jl. Cikopo RT. 04 RW. 08, Pameungpeuk - Garut</p>
-                    <p class="small opacity-75 mb-1"><i class="bi bi-whatsapp me-2"></i> 0821-1816-2844</p>
-                    <p class="small opacity-75"><i class="bi bi-whatsapp me-2"></i> 0853-2277-6115</p>
-                </div>
-                <div class="col-md-4 mb-4 text-center">
-                    <img src="https://img.icons8.com/color/96/000000/graduation-cap.png" width="60" alt="Logo" class="mb-3">
-                    <h6 class="fw-bold">SMK BISA - HEBAT</h6>
-                </div>
-                <div class="col-md-4 mb-4 text-md-end">
-                    <h5 class="fw-bold text-primary mb-3">Media Sosial</h5>
-                    <div class="d-flex justify-content-md-end gap-3 fs-4">
-                        <a href="https://www.facebook.com/smkmaarifpmpk" target="_blank" class="text-white link-danger">
-                            <i class="bi bi-instagram"></i>
-                        </a>
-                        <a href="https://www.facebook.com/smkmaarifpmpk" target="_blank" class="text-white link-primary">
-                            <i class="bi bi-facebook"></i>
-                        </a>
-                        <a href="https://www.tiktok.com/@smkmaarifpmpk" target="_blank" class="text-white link-secondary">
-                            <i class="bi bi-tiktok"></i>
-                        </a>
-                    </div>
-                    <p class="small opacity-50 mt-4 mb-0">© 2026 SMKS MA'ARIF PAMEUNGPEUK</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-    
-    <a href="https://wa.me/6282118162844" class="fab-whatsapp animate-float-fab" target="_blank" title="Chat Admin">
-    <i class="bi bi-whatsapp"></i>
-</a>
-
-
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // // Inisialisasi AOS
-        // AOS.init({
-        //     duration: 800, // Durasi animasi dalam ms
-        //     once: true,    // Animasi hanya berjalan sekali saat di scroll
-        //     offset: 100    // Jarak dari viewport sebelum animasi mulai
-        // });
-
-        // Konfigurasi AOS agar bisa REVERSE (bolak-balik)
-        AOS.init({
-            duration: 800,
-            easing: 'ease-out-back',
-            once: false,  // PENTING: Animasi akan mengulang setiap kali di-scroll (turun atau naik)
-            mirror: true, // PENTING: Elemen akan beranimasi keluar saat di-scroll menjauh
-            anchorPlacement: 'top-bottom', // Menentukan pemicu animasi berdasarkan posisi elemen
-        });
+        // Script sederhana untuk visual countdown
+        let timeLeft = 5;
+        const countdownElem = document.getElementById('seconds');
         
-        const form = document.getElementById('ppdbForm');
-        const loading = document.getElementById('loadingOverlay');
-
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            loading.style.display = 'flex';
-            
-            const formData = new FormData(form);
-            const data = {};
-            formData.forEach((value, key) => data[key] = value);
-
-            if(typeof google !== 'undefined') {
-                google.script.run
-                    .withSuccessHandler(() => {
-                        loading.style.display = 'none';
-                        alert('Pendaftaran Berhasil! Kami akan menghubungi Anda segera.');
-                        form.reset();
-                        bootstrap.Modal.getInstance(document.getElementById('modalDaftar')).hide();
-                    })
-                    .withFailureHandler(() => {
-                        loading.style.display = 'none';
-                        alert('Terjadi kesalahan. Silakan coba lagi atau hubungi Admin.');
-                    })
-                    .submitData(data);
-            } else {
-                setTimeout(() => {
-                    loading.style.display = 'none';
-                    alert('Preview: Data pendaftaran terkirim!');
-                    form.reset();
-                    bootstrap.Modal.getInstance(document.getElementById('modalDaftar')).hide();
-                }, 1000);
+        setInterval(() => {
+            if (timeLeft > 0) {
+                timeLeft--;
+                countdownElem.textContent = timeLeft;
             }
-        });
-
-        // Inisialisasi semua tooltip Bootstrap di halaman
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-            return new bootstrap.Tooltip(tooltipTriggerEl)
-        })
+        }, 1000);
     </script>
 
 </body>
